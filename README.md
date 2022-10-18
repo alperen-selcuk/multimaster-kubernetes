@@ -110,9 +110,9 @@ sudo apt-mark hold kubelet kubeadm
 kubeadm init --pod-network-cidr=10.222.0.0/16 --control-plane-endpoint="<haproxy-ip>:6443" --apiserver-advertise-address=0.0.0.0 --apiserver-cert-extra-sans=<your-A-record>
 ```
 
-config dosyasını alıp cluster IP sini k8s.dev-ops.expert ile değiştireceğiz.
+config dosyasını alıp cluster IP sini girdiğimiz domain ile değiştireceğiz.
 
-DNS üzerinde de k8s.dev-ops.expert için A kaydı girip HAPROXY dış IP sini göstereceğiz. 
+DNS üzerinde de A kaydı girip HAPROXY dış IP sini göstereceğiz. 
 
 ## kubectl kurulum
 

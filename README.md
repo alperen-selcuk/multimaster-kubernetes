@@ -107,7 +107,7 @@ sudo apt-mark hold kubelet kubeadm
 ## kubeadm init domain name ile birlikte
 
 ```
-kubeadm init --pod-network-cidr=10.222.0.0/16 --apiserver-advertise-address=0.0.0.0 --apiserver-cert-extra-sans=k8s.dev-ops.expert
+kubeadm init --pod-network-cidr=10.222.0.0/16 --control-plane-endpoint="<haproxy-ip>:6443" --apiserver-advertise-address=0.0.0.0 --apiserver-cert-extra-sans=<your-A-record>
 ```
 
 config dosyasını alıp cluster IP sini k8s.dev-ops.expert ile değiştireceğiz.

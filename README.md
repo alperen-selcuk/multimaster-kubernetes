@@ -109,7 +109,7 @@ sudo apt-mark hold kubelet kubeadm
 ## kubeadm init domain name ile birlikte
 
 ```
-kubeadm init --pod-network-cidr=10.222.0.0/16 --control-plane-endpoint="<haproxy-ip>:6443" --apiserver-advertise-address=0.0.0.0 --apiserver-cert-extra-sans=<your-A-record>
+kubeadm init --pod-network-cidr=10.222.0.0/16 --control-plane-endpoint="<haproxy-ip>:6443" --upload-certs --apiserver-advertise-address=0.0.0.0 --apiserver-cert-extra-sans=<your-A-record>
 ```
 
 config dosyasını alıp cluster IP sini girdiğimiz domain ile değiştireceğiz.

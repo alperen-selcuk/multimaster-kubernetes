@@ -123,3 +123,11 @@ daha sonra erişeceğimiz yere kubectl kuralım.
 ```
 curl https://raw.githubusercontent.com/alperen-selcuk/kubectl-install/main/install-kubectl-helm.sh | bash -
 ```
+
+## CNI kurulum
+
+weave plugin kurmak için
+
+```
+kubectl apply -f https://github.com/weaveworks/weave/releases/download/v2.8.1/weave-daemonset-k8s.yaml
+```

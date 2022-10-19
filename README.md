@@ -31,35 +31,6 @@ bu config haproxy sunucusu 6443 portunu dinleyecek ve gelen istekleri round robi
 
 >>> BÜTÜN NODELARA CONTAINERD kuracağız ve pre-req leri gireceğiz.
 
-## pre-req
-
-swap disable
-
-```
-sed -i '/ swap / s/^\(.*\)$/#\1/g' /etc/fstab
-```
-
-bridge ayarları
-
-```
-cat <<EOF | sudo tee /etc/modules-load.d/k8s.conf
-overlay
-br_netfilter
-EOF
-
-sudo modprobe overlay
-sudo modprobe br_netfilter
-
-# sysctl params required by setup, params persist across reboots
-cat <<EOF | sudo tee /etc/sysctl.d/k8s.conf
-net.bridge.bridge-nf-call-iptables  = 1
-net.bridge.bridge-nf-call-ip6tables = 1
-net.ipv4.ip_forward                 = 1
-EOF
-
-# Apply sysctl params without reboot
-sudo sysctl --system
-```
 
 
 ## containerd kurulum
@@ -90,6 +61,37 @@ systemctl daemon-reload
 systemctl start containerd
 systemctl enable containerd
 ```
+
+## pre-req
+
+swap disable
+
+```
+sed -i '/ swap / s/^\(.*\)$/#\1/g' /etc/fstab
+```
+
+bridge ayarları
+
+```
+cat <<EOF | sudo tee /etc/modules-load.d/k8s.conf
+overlay
+br_netfilter
+EOF
+
+sudo modprobe overlay
+sudo modprobe br_netfilter
+
+# sysctl params required by setup, params persist across reboots
+cat <<EOF | sudo tee /etc/sysctl.d/k8s.conf
+net.bridge.bridge-nf-call-iptables  = 1
+net.bridge.bridge-nf-call-ip6tables = 1
+net.ipv4.ip_forward                 = 1
+EOF
+
+# Apply sysctl params without reboot
+sudo sysctl --system
+```
+
 
 ## kubeadm, kubelet kurulumları
 
